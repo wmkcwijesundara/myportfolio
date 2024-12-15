@@ -1,0 +1,6 @@
+.custom-shape {
+    border-radius: 80px 0px;
+    width: 680px;
+    height: 600px;
+    flex-shrink: 0;
+}

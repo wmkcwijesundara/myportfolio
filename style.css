@@ -32,11 +32,16 @@ header a{
 }
 
 .navbar-nav .nav-link:last-child{
-    padding-right: 4em;
+    padding-right: 1em;
 }
 
 .navbar-nav .nav-link{
     padding:1.2em;
+}
+
+header .navbar-brand{
+    padding: 0.9em;
+    margin-left: 1em;
 }
 
 #hero {
@@ -60,6 +65,41 @@ header .row p{
     padding: 1vmin;
     font-size:2.5vmin;
     font-weight: 400;
+}
+
+/**section 1*/
+
+main .section-1 .row{
+    margin: 10vmin;
+}
+
+main .section-1 .row h6{
+    font-size: 2vmin;
+    font-weight:500;
+}
+
+main .section-1 .row h2{
+    font-size: 7.5vmin;
+    font-weight:700;
+}
+
+/**Section 2**/
+
+main .section-2 .row{
+    margin: 5vmin;
+}
+
+main .section-2 .row h4{
+    margin: 2vmin;
+    font-size: 5vmin;
+    font-weight: 600;
+}
+
+main .section-2 .row p{
+    margin: 2vmin;
+    font-size: 2.4vmin;
+    font-weight: 400;
+    text-align: center;
 }
 
 .custom-shape {

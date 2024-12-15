@@ -69,16 +69,16 @@ header .row p{
 
 /**section 1*/
 
-main .section-1 .row{
+main .row{
     margin: 10vmin;
 }
 
-main .section-1 .row h6{
+main .row h6{
     font-size: 2vmin;
     font-weight:500;
 }
 
-main .section-1 .row h2{
+main .row h2{
     font-size: 7.5vmin;
     font-weight:700;
 }

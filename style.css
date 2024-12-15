@@ -15,9 +15,39 @@ header a{
     font-size: 18px;
 
 }
+
+#hero {
+    background-image: url('img/1.jpg');
+    background-size: cover; 
+    background-position: center; 
+    height: 70vh;
+    width: 100%;
+}
 .custom-shape {
     border-radius: 80px 0px;
     width: 680px;
     height: 600px;
     flex-shrink: 0;
+}
+
+.nav-link{
+    color:black;
+    padding:12px 16px;
+    text-decoration: none;
+    display:block;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.nav-link:hover{
+    background:black;
+    color:white;
+}
+
+.navbar-nav .nav-link:last-child{
+    padding-right: 5em;
+}
+
+.navbar-nav .nav-link{
+    padding:1.2em;
 }

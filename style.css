@@ -102,6 +102,41 @@ main .section-2 .row p{
     text-align: center;
 }
 
+/**Section 3 **/
+main .section-3 .row{
+    margin: 6vmin;
+}
+
+main .section-3 .row h6{
+    font-size: 2vmin;
+    font-weight:400;
+}
+
+main .section-3 .row h2{
+    font-size: 6vmin;
+    font-weight: 600;
+}
+
+main .section-3 .row p{
+    font-size: 2.5vmin;
+    margin-top: 3vmin;
+    
+}
+
+main .section-3 .row .container{
+    margin-top: 20vmin;
+    
+}
+
+button
+{
+    border-radius: 3px;
+    background-color: antiquewhite;
+    padding: 1.5vmin;
+    font-weight: 600;
+    border: none;
+}
+
 .custom-shape {
     border-radius: 80px 0px;
     width: 680px;

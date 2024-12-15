@@ -16,19 +16,6 @@ header a{
 
 }
 
-#hero {
-    background-image: url('img/1.jpg');
-    background-size: cover; 
-    background-position: center; 
-    height: 70vh;
-    width: 100%;
-}
-.custom-shape {
-    border-radius: 80px 0px;
-    width: 680px;
-    height: 600px;
-    flex-shrink: 0;
-}
 
 .nav-link{
     color:black;
@@ -36,7 +23,7 @@ header a{
     text-decoration: none;
     display:block;
     margin-right: 20px;
-    font-size: 18px;
+    font-size: 2.5vmin;
 }
 
 .nav-link:hover{
@@ -45,9 +32,39 @@ header a{
 }
 
 .navbar-nav .nav-link:last-child{
-    padding-right: 5em;
+    padding-right: 4em;
 }
 
 .navbar-nav .nav-link{
     padding:1.2em;
+}
+
+#hero {
+    background-image: url('img/1.jpg');
+    background-size: cover; 
+    background-position: center; 
+    height: 70vh;
+    width: 100%;
+}
+
+header .row{
+    padding: 20vmin;
+}
+
+header .row h1{
+    font-size:11vmin;
+    font-weight: 700;
+}
+
+header .row p{
+    padding: 1vmin;
+    font-size:2.5vmin;
+    font-weight: 400;
+}
+
+.custom-shape {
+    border-radius: 80px 0px;
+    width: 680px;
+    height: 600px;
+    flex-shrink: 0;
 }

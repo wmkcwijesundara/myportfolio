@@ -90,4 +90,17 @@ a.sidebar-link{
     color:#fff;
     display:block;
     font-size:0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+
+}
+
+.sidebar-link i{
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+a.sidebar-link:hover{
+    background-color:rgba(255,255,255,.075);
+    border-left:3px solid #3b7ddd;
 }

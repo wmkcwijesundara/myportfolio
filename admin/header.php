@@ -45,13 +45,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="experience.php" class="sidebar-link">
                     <i class="fa-regular fa-star"></i>
                     <span>Experience</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="certification.php" class="sidebar-link">
                     <i class="fa-solid fa-award"></i>
                     <span>Certifications</span>
                     </a>

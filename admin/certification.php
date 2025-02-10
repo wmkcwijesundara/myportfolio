@@ -43,7 +43,7 @@
                         
                         
                         <div class="add-item">
-                            <h5>Add/Remove/Update your Experinces</h5>
+                            <h5>Add/Remove/Update your Certifications</h5>
                             <form action="" method="POST" id="skillForm" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="skillImage">Upload Related Image:</label>
@@ -51,7 +51,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="skillTitle">Experience Title:</label>
+                                    <label for="authImage">Upload Issuing Auhtority Image:</label>
+                                    <input type="file" id="itemImage" name="skillImage" accept="image/*" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="skillTitle">Issuing Authority Name:</label>
                                     <input type="text" id="itemTitle" name="skillTitle" class="form-control" rows="3" ></input>
                                 </div>
                                 <div class="form-group">

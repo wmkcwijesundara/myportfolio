@@ -1,69 +1,76 @@
 <?php
     include_once 'header.php';
     include_once '../includes/connect.php';
-    if(isset($_POST['skills_add'])){
-        $skillTitle = $_POST['skillTitle'];
-        $skillDescription = $_POST['skillDescription'];
-
+    
+    if(isset($_POST['certificate_add'])){
+        $auTitle = $_POST['auTitle'];
+        $cDescription = $_POST['cDescription'];
+        
         $targetDir = "../img/";
-        $targetFile = $targetDir .basename($_FILES["skillImage"]["name"]);
-        $uploadok = 1;
-
-        $filetype = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-        if($filetype != "jpg" && $filetype != "png" && $filetype != "jpeg" && $filetype != "gif")
-        {
-            echo "<script>alert('Only JPG, PNG, JPEG and GIF files are allowed.')</script>";
-            $uploadok = 0;
-        }
-
-        if($uploadok && move_uploaded_file($_FILES["skillImage"]["tmp_name"],$targetFile))
-        {
-            $skillImage = $targetFile;
-
-            $insert_query = "INSERT INTO skills (simage, sicon, stitle, sdesc) VALUES (?, ?, ?, ?)";
-            $stmt = mysqli_prepare($con, $insert_query);
-            mysqli_stmt_bind_param($stmt, 'ssss', $skillImage, $skillHTML, $skillTitle, $skillDescription);
-            
-            // Execute the query
-            if (mysqli_stmt_execute($stmt)) {
-                echo "<script>alert('Skill has been added successfully')</script>";
-            }else {
-                echo "<script>alert('Error adding skill: " . mysqli_error($con) . "')</script>";
-
-            }
-
-            mysqli_stmt_close($stmt);
-        } else {
-            echo "<script>alert('Error uploading file')</script>";
-            
+        
+        // Handling cImage Upload
+        $cImageFile = $targetDir . basename($_FILES["cImage"]["name"]);
+        $uploadOk = 1;
+        $fileType1 = strtolower(pathinfo($cImageFile, PATHINFO_EXTENSION));
+        
+        // Handling auImage Upload
+        $auImageFile = $targetDir . basename($_FILES["auImage"]["name"]);
+        $fileType2 = strtolower(pathinfo($auImageFile, PATHINFO_EXTENSION));
+        
+        // Allowed file types
+        $allowedTypes = ["jpg", "jpeg", "png", "gif"];
+        
+        if(!in_array($fileType1, $allowedTypes) || !in_array($fileType2, $allowedTypes)) {
+            echo "<script>alert('Only JPG, PNG, JPEG, and GIF files are allowed.')</script>";
+            $uploadOk = 0;
         }
         
+        if ($uploadOk) {
+            if (move_uploaded_file($_FILES["cImage"]["tmp_name"], $cImageFile) && move_uploaded_file($_FILES["auImage"]["tmp_name"], $auImageFile)) {
+                $cImage = $cImageFile;
+                $auImage = $auImageFile;
+                
+                $insert_query = "INSERT INTO certification (cauthority, authname, cimg, cdesc) VALUES (?, ?, ?, ?)";
+                $stmt = mysqli_prepare($con, $insert_query);
+                mysqli_stmt_bind_param($stmt, 'ssss', $auImage, $auTitle, $cImage, $cDescription);
+                
+                if (mysqli_stmt_execute($stmt)) {
+                    echo "<script>alert('Certificate has been added successfully')</script>";
+                } else {
+                    echo "<script>alert('Error adding Certification: " . mysqli_error($con) . "')</script>";
+                }
+                
+                mysqli_stmt_close($stmt);
+            } else {
+                echo "<script>alert('Error uploading files')</script>";
+            }
+        }
     }
 ?>
                         
                         
                         <div class="add-item">
                             <h5>Add/Remove/Update your Certifications</h5>
-                            <form action="" method="POST" id="skillForm" enctype="multipart/form-data">
+                            <form action="" method="POST" id="certificateForm" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="skillImage">Upload Related Image:</label>
-                                    <input type="file" id="itemImage" name="skillImage" accept="image/*" class="form-control">
+                                    <input type="file" id="itemImage" name="cImage" accept="image/*" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="authImage">Upload Issuing Auhtority Image:</label>
-                                    <input type="file" id="itemImage" name="skillImage" accept="image/*" class="form-control">
+                                    <input type="file" id="itemImage" name="auImage" accept="image/*" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="skillTitle">Issuing Authority Name:</label>
-                                    <input type="text" id="itemTitle" name="skillTitle" class="form-control" rows="3" ></input>
+                                    <input type="text" id="itemTitle" name="auTitle" class="form-control" rows="3" ></input>
                                 </div>
                                 <div class="form-group">
                                     <label for="skillDescription"> Description:</label>
-                                    <textarea id="itemDescription" name="skillDescription" class="form-control" rows="3" placeholder="Write a short description..."></textarea>
+                                    <textarea id="itemDescription" name="cDescription" class="form-control" rows="3" placeholder="Write a short description..."></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="skills_add">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="certificate_add">Submit</button>
                             </form>
                         </div>
                         

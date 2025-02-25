@@ -1,3 +1,22 @@
+<?php
+                include_once 'includes/connect.php';
+
+                $select_profile = "SELECT * FROM `profile` ";
+                $result_profile = mysqli_query($con,$select_profile);
+                $row = mysqli_fetch_assoc($result_profile);
+                $pname = $row['name'];
+                $pdesc = $row['overview'];
+                $bgImage = $row['bg'];
+
+                $select_skill = "SELECT * FROM `skills` ";
+                $result_skill = mysqli_query($con,$select_skill);
+
+                $select_project = "SELECT * FROM `projects` ";
+                $result_project = mysqli_query($con,$select_project);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,17 +53,25 @@
               </nav>
         </div>
 
+ 
+
     <div class="container text-center" id="hero">
         <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <h1>Hello,I'm Kavindu</h1>
-                <div class="panel text-center">
-                <p>A first-year undergraduate in BSc (Hons) in Computer Networking at
-                     NSBM Green University in Srilanka. I have a growing interest in web development,
-                      programming, and networking. I'm excited to explore new 
-                    technologies and create impactful projects as I advance in my academic journey.</p>
-                </div>
-            </div>
+            <?php
+                echo "
+                <div class='col-md-12 col-sm-12'>
+                    <h1>Hello,I'm $pname</h1>
+                    <div class='panel text-center'>
+                        <p>$pdesc</p>
+                    </div>
+                </div>";
+            ?>
+
+            <style>
+                #hero {
+                background: url('<?php echo $bgImage; ?>') no-repeat center center/cover;
+                }
+            </style>
         </div>
     </div>
     </header>
@@ -61,65 +88,68 @@
         </section>
         <section class="section-2 container-fluid text-center">
             <div class="row">
-                <div class="col-md-3">
-                    <i class="fa-brands fa-html5" style="color: #35a784; font-size:15vmin;"></i>
-                    <h4>HTML</h4>
-                    <p>Have a basic understanding of HTML for structuring and formatting web pages, 
-                        providing the foundation for creating and organizing content on websites.</p>
-                </div>
-                <div class="col-md-3">
-                    <i class="fa-solid fa-c" style="color: #35a784;font-size:15vmin;"></i>
-                    <h4>C</h4>
-                    <p>Understands the basics of C programming, including variables, loops,
-                         and conditional statements, and exploring how low-level logic works.</p>
-                </div>
-                <div class="col-md-3">
-                    <i class="fa-brands fa-java" style="color: #35a784; font-size:15vmin;"></i>
-                    <h4>Java</h4>
-                    <p>Developing proficiency in Java, focusing on writing code for algorithms,
-                         understanding object-oriented concepts, and building small applications.</p>
-                </div>
-                <div class="col-md-3">
-                    <i class="fa-brands fa-python" style="color: #35a784;  font-size:15vmin;"></i>
-                    <h4>Python</h4>
-                    <p>Have some experience with Python, including writing simple programs for problem-solving,
-                         basic data manipulation, and learning key programming concepts</p>
-                </div>
+                <?php
+                    while($skill = mysqli_fetch_assoc($result_skill)){
+                    $simage = $skill['simage'];
+                    $sicon = $skill['sicon'];
+                    $stitle = $skill['stitle'];
+                    $sdesc = $skill['sdesc'];
+                    echo "<div class='col-md-3'>
+                    $sicon
+                    <h4>$stitle</h4>
+                    <p>$sdesc</p>
+                </div>";
+                }
+                ?>
             </div>
         </section>
         <section class="section-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="container text-left">
+        <?php
+                  $counter = 0;
+                  while($project = mysqli_fetch_assoc($result_project)){
+                    $protitle = $project['protitle'];
+                    $prodescription = $project['prodescription'];
+                    $proimage = $project['proimage'];
+
+                    if($counter % 2 ==0)
+                    {
+                        echo "<div class='row'>
+                <div class='col-md-6'>
+                    <div class='container text-left'>
                     <h6>Project</h6>
-                    <h2>Library Management<br> System</h2>
-                    <p>Developed a library management system using C language, integrated with a relational SQL database.
-                     The system manages book records, user accounts, and borrowing history,
-                      providing essential features such as adding, updating, and deleting entries efficiently.</p>
+                    <h2>$protitle</h2>
+                    <p>$prodescription</p>
                     <button>Explore</button>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <img src="img/5.jpg" class="img-fluid custom-shape" alt="Custom Shaped Image">
+                <div class='col-md-6'>
+                    <img src='$proimage' class='img-fluid custom-shape' alt='Custom Shaped Image'>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="img/4.jpg" class="img-fluid custom-shape" alt="Custom Shaped Image">
+            </div>";
+                    }else{
+                        echo "<div class='row'>
+                <div class='col-md-6'>
+                    <img src='$proimage' class='img-fluid custom-shape' alt='Custom Shaped Image'>
                 </div>
-                <div class="col-md-6">
+                <div class='col-md-6'>
                     
-                    <div class="container text-end">
+                    <div class='container text-end'>
                         <h6>Project</h6>
-                        <h2>Library Management<br> System</h2>
-                        <p>Developed a library management system using C language, integrated with a relational SQL database.
-                         The system manages book records, user accounts, and borrowing history,
-                          providing essential features such as adding, updating, and deleting entries efficiently.</p>
+                        <h2>$protitle</h2>
+                        <p>$prodescription</p>
                         <button>Explore</button>
                         </div>
                 </div>
-            </div>
+            </div>";
+                    }
+
+                    $counter++;
+                    
+                  }
+                ?>
+
+
+
         </section>
         <section class="section-4">
             <div class="container text-center">

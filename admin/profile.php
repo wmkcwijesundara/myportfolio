@@ -6,7 +6,9 @@
         $profileDescription = $_POST['profileDescription'];
 
         $targetDir = "../img/";
-        $targetFile = $targetDir .basename($_FILES["bgImage"]["name"]);
+        $fileName = basename($_FILES["bgImage"]["name"]);
+        $targetFile = $targetDir . $fileName;
+        $dbImagePath = "img/" . $fileName;
         $uploadok = 1;
 
         $filetype = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -18,7 +20,7 @@
 
         if($uploadok && move_uploaded_file($_FILES["bgImage"]["tmp_name"],$targetFile))
         {
-            $bgImage = $targetFile;
+            $bgImage = $dbImagePath;
 
             $insert_query = "INSERT INTO profile (name, overview, bg) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($con, $insert_query);
@@ -26,7 +28,7 @@
             
             // Execute the query
             if (mysqli_stmt_execute($stmt)) {
-                echo "<script>alert('Skill has been added successfully')</script>";
+                echo "<script>alert('Profile Details has been added successfully')</script>";
             }else {
                 echo "<script>alert('Error adding skill: " . mysqli_error($con) . "')</script>";
 

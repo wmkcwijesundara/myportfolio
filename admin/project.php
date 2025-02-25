@@ -6,7 +6,9 @@
         $projectDescription = $_POST['projectDescription'];
 
         $targetDir = "../img/";
-        $targetFile = $targetDir .basename($_FILES["projectImage"]["name"]);
+        $fileName = basename($_FILES["projectImage"]["name"]);
+        $targetFile = $targetDir . $fileName;
+        $ImagePath = "img/" . $fileName;
         $uploadok = 1;
 
         $filetype = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -18,7 +20,7 @@
 
         if($uploadok && move_uploaded_file($_FILES["projectImage"]["tmp_name"],$targetFile))
         {
-            $projectImage = $targetFile;
+            $projectImage = $ImagePath;
 
             $insert_query = "INSERT INTO projects (protitle, prodescription, proimage) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($con, $insert_query);

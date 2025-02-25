@@ -1,12 +1,12 @@
 <?php
     include_once 'header.php';
     include_once '../includes/connect.php';
-    if(isset($_POST['skills_add'])){
-        $skillTitle = $_POST['skillTitle'];
-        $skillDescription = $_POST['skillDescription'];
+    if(isset($_POST['ex_add'])){
+        $exTitle = $_POST['exTitle'];
+        $exDescription = $_POST['exDescription'];
 
         $targetDir = "../img/";
-        $targetFile = $targetDir .basename($_FILES["skillImage"]["name"]);
+        $targetFile = $targetDir .basename($_FILES["exImage"]["name"]);
         $uploadok = 1;
 
         $filetype = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -16,17 +16,17 @@
             $uploadok = 0;
         }
 
-        if($uploadok && move_uploaded_file($_FILES["skillImage"]["tmp_name"],$targetFile))
+        if($uploadok && move_uploaded_file($_FILES["exImage"]["tmp_name"],$targetFile))
         {
-            $skillImage = $targetFile;
+            $exImage = $targetFile;
 
-            $insert_query = "INSERT INTO skills (simage, sicon, stitle, sdesc) VALUES (?, ?, ?, ?)";
+            $insert_query = "INSERT INTO experience (extitle, exdesc, eximage) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($con, $insert_query);
-            mysqli_stmt_bind_param($stmt, 'ssss', $skillImage, $skillHTML, $skillTitle, $skillDescription);
+            mysqli_stmt_bind_param($stmt, 'sss', $exTitle, $exDescription, $exImage);
             
             // Execute the query
             if (mysqli_stmt_execute($stmt)) {
-                echo "<script>alert('Skill has been added successfully')</script>";
+                echo "<script>alert('Experience has been added successfully')</script>";
             }else {
                 echo "<script>alert('Error adding skill: " . mysqli_error($con) . "')</script>";
 
@@ -44,21 +44,21 @@
                         
                         <div class="add-item">
                             <h5>Add/Remove/Update your Experinces</h5>
-                            <form action="" method="POST" id="skillForm" enctype="multipart/form-data">
+                            <form action="" method="POST" id="exForm" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="skillImage">Upload Related Image:</label>
-                                    <input type="file" id="itemImage" name="skillImage" accept="image/*" class="form-control">
+                                    <label for="exImage">Upload Related Image:</label>
+                                    <input type="file" id="itemImage" name="exImage" accept="image/*" class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="skillTitle">Experience Title:</label>
-                                    <input type="text" id="itemTitle" name="skillTitle" class="form-control" rows="3" ></input>
+                                    <label for="exTitle">Experience Title:</label>
+                                    <input type="text" id="itemTitle" name="exTitle" class="form-control" rows="3" ></input>
                                 </div>
                                 <div class="form-group">
-                                    <label for="skillDescription"> Description:</label>
-                                    <textarea id="itemDescription" name="skillDescription" class="form-control" rows="3" placeholder="Write a short description..."></textarea>
+                                    <label for="exDescription"> Description:</label>
+                                    <textarea id="itemDescription" name="exDescription" class="form-control" rows="3" placeholder="Write a short description..."></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="skills_add">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="ex_add">Submit</button>
                             </form>
                         </div>
                         

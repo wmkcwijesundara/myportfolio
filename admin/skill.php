@@ -7,7 +7,9 @@
         $skillDescription = $_POST['skillDescription'];
 
         $targetDir = "../img/";
-        $targetFile = $targetDir .basename($_FILES["skillImage"]["name"]);
+        $fileName = basename($_FILES["skillImage"]["name"]);
+        $targetFile = $targetDir . $fileName;
+        $ImagePath = "img/" . $fileName;
         $uploadok = 1;
 
         $filetype = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -19,7 +21,7 @@
 
         if($uploadok && move_uploaded_file($_FILES["skillImage"]["tmp_name"],$targetFile))
         {
-            $skillImage = $targetFile;
+            $skillImage = $ImagePath;
 
             $insert_query = "INSERT INTO skills (simage, sicon, stitle, sdesc) VALUES (?, ?, ?, ?)";
             $stmt = mysqli_prepare($con, $insert_query);

@@ -6,7 +6,9 @@
         $exDescription = $_POST['exDescription'];
 
         $targetDir = "../img/";
-        $targetFile = $targetDir .basename($_FILES["exImage"]["name"]);
+        $fileName = basename($_FILES["exImage"]["name"]);
+        $targetFile = $targetDir . $fileName;
+        $ImagePath = "img/" . $fileName;
         $uploadok = 1;
 
         $filetype = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -18,7 +20,7 @@
 
         if($uploadok && move_uploaded_file($_FILES["exImage"]["tmp_name"],$targetFile))
         {
-            $exImage = $targetFile;
+            $exImage = $ImagePath;
 
             $insert_query = "INSERT INTO experience (extitle, exdesc, eximage) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($con, $insert_query);

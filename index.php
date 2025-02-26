@@ -14,6 +14,12 @@
                 $select_project = "SELECT * FROM `projects` ";
                 $result_project = mysqli_query($con,$select_project);
 
+                $select_experience = "SELECT * FROM `experience` ";
+                $result_experience = mysqli_query($con,$select_experience);
+
+                $select_certificate = "SELECT * FROM `certification` ";
+                $result_certificate = mysqli_query($con,$select_certificate);
+
 
 ?>
 
@@ -160,58 +166,29 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <hr>
-                <div class="col-md-6">
-                    <div class="container text-left">
-                    <h2>ICACT</h2>
-                    <p>Attended the ICACT IT conference at NSBM University,
-                         engaging with experts and learning about the latest trends and innovations in information technology</p>
-                    <button>More info</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="container text-end">
-                    <img src="img/6.jpg"  alt="Custom Shaped Image" height="315px" width="553px">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <hr>
-                <div class="col-md-6">
-                    <div class="container text-left">
-                    <h2>RDB</h2>
-                    <p>Completed a six-month placement under a skill development program at the Regional Development Bank, gaining practical
-                         experience in financial operations, customer service, and professional
-                          work environments.</p>
-                    <button>More info</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="container text-end">
-                    <img src="img/8.jpg"  alt="Custom Shaped Image" height="315px" width="553px">
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <hr>
-                <div class="col-md-6">
-                    <div class="container text-left">
-                    <h2>Fiverr</h2>
-                    <p>Designed engaging and professional presentations for clients on Fiverr, 
-                        focusing on visual storytelling, layout consistency, and audience impact</p>
-                    <button>More info</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="container text-end">
-                    <img src="img/7.jpg"  alt="Custom Shaped Image" height="315px" width="553px">
-                    </div>
-                </div>
-            </div>
-
+            <?php
+                    while($experience = mysqli_fetch_assoc($result_experience)){
+                        $extitle = $experience['extitle'];
+                        $exdesc = $experience['exdesc'];
+                        $eximage = $experience['eximage'];
+                        echo "
+                                <div class='row'>
+                                <hr>
+                                <div class='col-md-6'>
+                                    <div class='container text-left'>
+                                        <h2>$extitle</h2>
+                                        <p>$exdesc</p>
+                                        <button>More info</button>
+                                    </div>
+                                </div>
+                                    <div class='col-md-6'>
+                                        <div class='container text-end'>
+                                            <img src='$eximage'  alt='Custom Shaped Image' height='315px' width='553px'>
+                                        </div>
+                                    </div>
+                                </div>";
+                    }
+            ?>
         </section>
         <section class="section-5">
             <div class="container text-center">
@@ -222,27 +199,33 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3" >
-                    <div class="container text-center">
-                        <img src="img/google.png" style ="height: 50px; width: 50px;">
-                        <h4>Google</h4>
-                    </div>
+            <?php
+                    while($certificate = mysqli_fetch_assoc($result_certificate)){
+                        $cauthority = $certificate['cauthority'];
+                        $authname = $certificate['authname'];
+                        $cimg = $certificate['cimg'];
+                        $cdesc = $certificate['cdesc'];
+                        echo "<div class='row'>
+                                <div class='col-md-3' >
+                                    <div class='container text-center'>
+                                        <img src='$cauthority' style ='height: 50px; width: 50px;'>
+                                        <h4>$authname</h4>
+                                    </div>
                     
-                </div>
-                <div class="col-md-6">
-                    <div class="container text-center">
-                    <img src="img/ct.jpg"  alt="Custom Shaped Image" height="315px" width="500px">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="container text-left">
-                        <p>Designed engaging and professional
-                             presentations for clients on Fiverr, focusing on visual
-                              storytelling, layout consistency, and audience impact</p>
-                    </div>
-            </div>
-            
+                                </div>
+                                <div class='col-md-6'>
+                                    <div class='container text-center'>
+                                    <img src='$cimg'  alt='Custom Shaped Imag' height='315px' width='500px'>
+                                    </div>
+                                </div>
+                                <div class='col-md-3'>
+                                    <div class='container text-left'>
+                                        <p>$cdesc</p>
+                                    </div>
+                                </div>
+                                </div>";
+                    }
+            ?>        
         </section>
         <section class="section-6">
             <div class="row">

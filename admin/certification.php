@@ -9,12 +9,17 @@
         $targetDir = "../img/";
         
         // Handling cImage Upload
-        $cImageFile = $targetDir . basename($_FILES["cImage"]["name"]);
+        $cImageFile = basename($_FILES["cImage"]["name"]);
+        $targetFile = $targetDir . $cImageFile;
+        $ImagePath1 = "img/" . $cImageFile;
         $uploadOk = 1;
         $fileType1 = strtolower(pathinfo($cImageFile, PATHINFO_EXTENSION));
         
         // Handling auImage Upload
-        $auImageFile = $targetDir . basename($_FILES["auImage"]["name"]);
+  
+        $auImageFile = basename($_FILES["auImage"]["name"]);
+        $targetFile = $targetDir . $auImageFile;
+        $ImagePath2 = "img/" . $auImageFile;
         $fileType2 = strtolower(pathinfo($auImageFile, PATHINFO_EXTENSION));
         
         // Allowed file types
@@ -27,8 +32,8 @@
         
         if ($uploadOk) {
             if (move_uploaded_file($_FILES["cImage"]["tmp_name"], $cImageFile) && move_uploaded_file($_FILES["auImage"]["tmp_name"], $auImageFile)) {
-                $cImage = $cImageFile;
-                $auImage = $auImageFile;
+                $cImage = $ImagePath1;
+                $auImage = $ImagePath2;
                 
                 $insert_query = "INSERT INTO certification (cauthority, authname, cimg, cdesc) VALUES (?, ?, ?, ?)";
                 $stmt = mysqli_prepare($con, $insert_query);

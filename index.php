@@ -47,11 +47,11 @@
                   <div class="mr-auto">
                   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                      <a class="nav-link" href="#">Skills</a>
-                      <a class="nav-link" href="#">Projects</a>
-                      <a class="nav-link" href="#">Experience</a>
-                      <a class="nav-link" href="#">Certifications</a>
-                      <a class="nav-link" href="#">Contact</a>
+                      <a class="nav-link" href="#skills">Skills</a>
+                      <a class="nav-link" href="#projects">Projects</a>
+                      <a class="nav-link" href="#experience">Experience</a>
+                      <a class="nav-link" href="#certification">Certifications</a>
+                      <a class="nav-link" href="#contact">Contact</a>
                     </div>
                     </div>
                   </div>
@@ -92,7 +92,7 @@
                 </div>
             </div>
         </section>
-        <section class="section-2 container-fluid text-center">
+        <section class="section-2 container-fluid text-center" id="skills">
             <div class="row">
                 <?php
                     while($skill = mysqli_fetch_assoc($result_skill)){
@@ -109,7 +109,7 @@
                 ?>
             </div>
         </section>
-        <section class="section-3">
+        <section class="section-3" id="projects">
         <?php
                   $counter = 0;
                   while($project = mysqli_fetch_assoc($result_project)){
@@ -157,7 +157,7 @@
 
 
         </section>
-        <section class="section-4">
+        <section class="section-4" id="experience">
             <div class="container text-center">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -190,7 +190,7 @@
                     }
             ?>
         </section>
-        <section class="section-5">
+        <section class="section-5" id="certification">
             <div class="container text-center">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -227,7 +227,7 @@
                     }
             ?>        
         </section>
-        <section class="section-6">
+        <section class="section-6" id="contact">
             <div class="row">
             <div class="container text-left">
                     <div class="col-md-12 col-sm-12">

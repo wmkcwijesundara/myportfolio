@@ -10,20 +10,19 @@
         
         // Handling cImage Upload
         $cImageFile = basename($_FILES["cImage"]["name"]);
-        $targetFile = $targetDir . $cImageFile;
+        $targetFile1 = $targetDir . $cImageFile;
         $ImagePath1 = "img/" . $cImageFile;
-        $uploadOk = 1;
-        $fileType1 = strtolower(pathinfo($cImageFile, PATHINFO_EXTENSION));
         
-        // Handling auImage Upload
-  
         $auImageFile = basename($_FILES["auImage"]["name"]);
-        $targetFile = $targetDir . $auImageFile;
+        $targetFile2 = $targetDir . $auImageFile;
         $ImagePath2 = "img/" . $auImageFile;
-        $fileType2 = strtolower(pathinfo($auImageFile, PATHINFO_EXTENSION));
-        
+
+        $uploadOk = 1;
+    
         // Allowed file types
         $allowedTypes = ["jpg", "jpeg", "png", "gif"];
+        $fileType1 = strtolower(pathinfo($cImageFile, PATHINFO_EXTENSION));
+        $fileType2 = strtolower(pathinfo($auImageFile, PATHINFO_EXTENSION));
         
         if(!in_array($fileType1, $allowedTypes) || !in_array($fileType2, $allowedTypes)) {
             echo "<script>alert('Only JPG, PNG, JPEG, and GIF files are allowed.')</script>";
@@ -31,7 +30,7 @@
         }
         
         if ($uploadOk) {
-            if (move_uploaded_file($_FILES["cImage"]["tmp_name"], $cImageFile) && move_uploaded_file($_FILES["auImage"]["tmp_name"], $auImageFile)) {
+            if (move_uploaded_file($_FILES["cImage"]["tmp_name"], $targetFile1) && move_uploaded_file($_FILES["auImage"]["tmp_name"], $targetFile2)) {
                 $cImage = $ImagePath1;
                 $auImage = $ImagePath2;
                 
